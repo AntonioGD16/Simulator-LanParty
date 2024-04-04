@@ -21,7 +21,6 @@ int main(int argc, char* argv[]){
     head->next = NULL;
     int nr_echipe;
     fscanf(fin, "%d", &nr_echipe);
-   // printf("%d", nr_echipe);
 
     Echipa* teams;
     int i, j;
@@ -49,14 +48,6 @@ int main(int argc, char* argv[]){
     }
 
 
-    //  for (i = 0; i < nr_echipe; i++) {
-    //     printf("Team %d\n", i + 1);
-    //     printf("Number of participants: %d\n", teams[i].nr_part);
-    //     printf("Team name: %s", teams[i].nume_echipa);
-    //         for(j = 0; j<teams[i].nr_part; j++){
-    //             printf("Player: %s %s, Points: %d\n", teams[i].jucator[j].nume, teams[i].jucator[j].prenume, teams[i].jucator[j].points);
-    //         }
-    // }
 
     return 0;
 }
