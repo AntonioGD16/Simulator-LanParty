@@ -1,4 +1,4 @@
-#include "/home/antonete/tema1_PA/headers/liste.h" //calea unde se afla heder-ul
+#include "liste.h"
 #include <limits.h>
 #include <math.h>
 #define MAX_NUME 50
