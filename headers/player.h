@@ -1,5 +1,6 @@
-typedef struct{
+struct Player
+{
     char* firstName;
     char* secondName;
     int points;
-}player;
+};

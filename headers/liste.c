@@ -59,3 +59,4 @@ int deleteTeam(Node **head, Echipa v, int nr_echipe, int nr_min_points){
 	}
 	return nr_echipe;
 }
+
