@@ -3,14 +3,15 @@
 #include <string.h>
 
 typedef struct{
-        char nume[50];
-        char prenume[50];
+        char* nume;
+        char* prenume;
         int points;
 }player;
 
 typedef struct team{
-        char nume_echipa[50];
+        char* nume_echipa;
         int nr_part;
+        float teamPoints;
         player* jucator;
 }Echipa;
 
@@ -21,6 +22,6 @@ typedef struct Elem{
 
 
 void addTeamAtBeginning(Node** , Echipa );
-// void addAtBeginning(Node**, Echipa v);
-// void addAtEnd(Node**, Echipa);
-// void deleteNode(Node **, Echipa);
+void addTeamAtEnd(Node** ,  Echipa );
+float tPoints(Echipa , int );
+int deleteTeam(Node **, Echipa , int , int);
