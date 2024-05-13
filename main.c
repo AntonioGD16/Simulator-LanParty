@@ -1,6 +1,7 @@
 #include "liste.h"
 
 
+
 int main(int argc, char* argv[]){
     FILE* fin, *fout, *fcer;
     fin = fopen(argv[2], "rb");
