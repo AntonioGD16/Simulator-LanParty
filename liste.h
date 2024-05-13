@@ -4,6 +4,7 @@
 #include "struct.h"
 
 
+
 void addTeamAtBeginning(Node** , Echipa );
 void addTeamAtEnd(Node** ,  Echipa );
 float tPoints(Echipa , int );
