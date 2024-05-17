@@ -1,6 +1,4 @@
-#include "liste.h"
-#include <float.h> // pt ca am folosit FLT_MAX
-#include <math.h> // pt ca am folosit log2 si pow
+#include "struct.h"
 #define MAX_NUME 50
 
 
@@ -47,14 +45,17 @@ Node* createTeamList(FILE* fin, FILE* fout, int* nr_echipe){
     }
 
     int i, j;
+    char buff[100];
     for(i = 0; i < *nr_echipe; i++){
         fscanf(fin, "%d", &teams[i].nr_part);
         getc(fin); //luam enter-ul dintre numarul participantilor din echipa si numele echipei
-        teams[i].nume_echipa = (char*)malloc(MAX_NUME * sizeof(char));
-        if(teams[i].nume_echipa == NULL){
-            exit(1);
-        }
-        fgets(teams[i].nume_echipa, MAX_NUME, fin);
+        //Punem intr-un buffer numele echipei fara sa luam si \n de la fina;
+        fscanf(fin, "%[^\n]", buff);
+         int len = strlen(buff);
+        buff[len - 1] = '\0'; // adagugam \0 la finalul stringului
+        if(buff[len - 2] == ' ')
+            buff[len - 2] = '\0'; // adagugam \0 la finalul stringului care are spatiu alb
+        teams[i].nume_echipa = strdup(buff); // alocam memorie si copiem ce e in buff in teams[i].nume_echipa
         teams[i].jucator = (player*)malloc(teams[i].nr_part * sizeof(player));
         for(j = 0; j < teams[i].nr_part; j++){
             teams[i].jucator[j].nume = (char*)malloc(MAX_NUME * sizeof(char));
@@ -105,62 +106,3 @@ int deleteTeam(Node** head, int nr_echipe, float nr_min_points) {
 }
     return nr_echipe;
 }
-
-
- 
-
-
-
-
-void task2(FILE* fin, FILE* fout){
-    Node* head = NULL;
-    int nr_echipe;
-    head = createTeamList(fin, fout, &nr_echipe);
-    int n; // nr de echipe dupa eliminarea echipelor cu punctaj mic
-    n = nr_echipe;
-    // n trebuie să fie maxim și să fie o putere a lui 2
-    while(n > (int)pow(2, (int)log2(nr_echipe))){
-        n--;
-    }
-    float nr_min_points = FLT_MAX;
-    // aflam nr minim de puncte al unei echipe, stergem echipele care au nr minim de puncte si parcurgem iar lista pana cand nr de echipe devine cel dorit adica n
-    while(nr_echipe >= n){
-        nr_min_points = FLT_MAX;
-        Node* hc = head;
-        while(hc != NULL){
-            if (hc->val.teamPoints < nr_min_points){
-                nr_min_points = hc->val.teamPoints;
-            }
-            hc = hc->next;
-        }
-
-        nr_echipe = deleteTeam(&head, nr_echipe, nr_min_points);       
-
-    }
-
-    // scrierea în fisier a numelor echipelor ramase în lista
-    Node* hc = head;
-    while(hc != NULL){
-        if(hc->val.nume_echipa != NULL){
-            fputs(hc->val.nume_echipa, fout);
-        }
-        hc = hc->next;
-    }
-}
-
-
-void task1(FILE* fin, FILE* fout){
-	Node* head = NULL;
-	int nr_echipe;
-	head = createTeamList(fin, fout, &nr_echipe);
-	Node* hc = head;
-
-    while(hc != NULL){
-        if (hc->val.nume_echipa != NULL){
-            fputs(hc->val.nume_echipa, fout);
-    }
-    hc = hc->next;
-    }
-}
-    
-
