@@ -1,4 +1,4 @@
-#include "liste.h"
+#include "struct.h"
 
 
 
@@ -16,10 +16,11 @@ int main(int argc, char* argv[]){
     if(fcer == NULL){
         exit(1);
     }
+
     int cerinta[5];
     for (int k = 0; k < 5; k++) {
         fscanf(fcer, "%d", &cerinta[k]);
-        getc(fcer);
+        getc(fcer); // pentru a lua spatiul dintre cifre
     }
 
     if(cerinta[0] == 1 && cerinta[1] == 0 && cerinta[2] == 0 && cerinta[3] == 0 && cerinta[4] == 0){ 
@@ -29,6 +30,14 @@ int main(int argc, char* argv[]){
     if(cerinta[0] == 1 && cerinta[1] == 1 && cerinta[2] == 0 && cerinta[3] == 0 && cerinta[4] == 0){
         task2(fin, fout);
     }
-            
+
+    if(cerinta[0] == 1 && cerinta[1] == 1 && cerinta[2] == 1 && cerinta[3] == 0 && cerinta[4] == 0){
+        task3(fin, fout);
+    }
+
+    if(cerinta[0] == 1 && cerinta[1] == 1 && cerinta[2] == 1 && cerinta[3] == 1 && cerinta[4] == 0){
+        task4(fin, fout);
+    }
+
     return 0;
 }
