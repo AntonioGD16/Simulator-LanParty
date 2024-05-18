@@ -39,5 +39,9 @@ int main(int argc, char* argv[]){
         task4(fin, fout);
     }
 
+    if(cerinta[0] == 1 && cerinta[1] == 1 && cerinta[2] == 1 && cerinta[3] == 1 && cerinta[4] == 1){
+        task5(fin, fout);
+    }
+
     return 0;
 }
