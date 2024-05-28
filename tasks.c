@@ -5,11 +5,11 @@
 
 void playMatches(Queue* q, Stack* winnersStack, Stack* losersStack, FILE* fout, int i, int nr_runde, int *nr_echipe){
     while(!isQueueEmpty(q)){
-        // Extrage primele două echipe din coadă pentru un meci
+        // Extrage primele doua echipe din coada pentru un meci
         Echipa echipa1 = deQueue(q);
         Echipa echipa2 = deQueue(q);
 
-        // Simularea meciului și actualizarea punctajelor
+        // Simularea meciului si actualizarea punctajelor
         if(echipa1.teamPoints > echipa2.teamPoints){
             echipa1.teamPoints += 1;
             push(winnersStack, echipa1);
@@ -23,7 +23,7 @@ void playMatches(Queue* q, Stack* winnersStack, Stack* losersStack, FILE* fout, 
     }
 
     *nr_echipe = (*nr_echipe)/2;
-    // Afișare echipa câștigătoare
+    // Afisare echipa castigatoare
     fprintf(fout, "WINNERS OF ROUND NO:%d\n", i + 1);
         printStack(*winnersStack, fout);
     if((i + 1) != nr_runde) // i + 1 pt ca i e de la 0 si folosim acest if pt a nu adauga la finalul fisierului 2 linii noi
@@ -45,11 +45,9 @@ void task1(FILE* fin, FILE* fout){
     hc = hc->next;
     }
 
-    hc = head;
-    while(hc != NULL){
-        Node* nextNode = hc->next;
-        free(hc);                  // Eliberam memoria pentru lista
-        hc = nextNode;
+    while(head != NULL){
+        free(head);                  // Eliberam memoria pentru lista
+        head = head->next;
     }
     head = NULL;
     hc = NULL;
@@ -61,7 +59,7 @@ Node* task2(FILE* fin, FILE* fout){
     head = createTeamList(fin, fout, &nr_echipe);
     int newNr_echipe; // nr de echipe dupa eliminarea echipelor cu punctaj mic
     newNr_echipe = nr_echipe;
-    // n trebuie să fie maxim și să fie o putere a lui 2
+    // newNr trebuie sa fie maxim si sa fie o putere a lui 2
     while(newNr_echipe > (int)pow(2, (int)log2(nr_echipe))){
         newNr_echipe--;
     }
@@ -79,7 +77,7 @@ Node* task2(FILE* fin, FILE* fout){
         nr_echipe = deleteTeam(&head, nr_echipe, nr_min_points);
     }
 
-    // scrierea în fisier a numelor echipelor ramase în lista
+    // scrierea in fisier a numelor echipelor ramase în lista
     Node* hc = head;
     while(hc != NULL){
         if(hc->val.nume_echipa != NULL){
@@ -152,11 +150,9 @@ Stack task3(FILE* fin, FILE* fout){
     winnersStack.top = NULL;
     deleteStack(&losersStack.top);
     losersStack.top = NULL;
-    hc = head;
-    while(hc != NULL){
-        Node* nextNode = hc->next;
-        free(hc);                  // Eliberam memoria pentru lista
-        hc = nextNode;
+    while(head != NULL){
+        free(head);                  // Eliberam memoria pentru lista
+        head = head->next;
     }
     head = NULL;
     hc = NULL;

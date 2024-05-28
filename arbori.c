@@ -68,7 +68,7 @@ int getHeight(AVLNode* node){
     return node->height;
 }
 
-// Functie pentru a obține factorul de balanta al unui nod
+// Functie pentru a obtine factorul de balanta al unui nod
 int getBalance(AVLNode* node){
     if (node == NULL)
         return 0;
@@ -178,7 +178,7 @@ AVLNode* insertAVL(AVLNode* node, Echipa team){
 
 }
 
-// Functie pentru a parcurge arborele in inordine
+// Functie pentru a parcurge arborele si de a umple vectorul de echipe in inordine
 void inordineTraversal(BSTNode* root, Echipa* array, int* index){
     if (root != NULL) {
         inordineTraversal(root->left, array, index);

@@ -99,7 +99,7 @@ int deleteTeam(Node** head, int nr_echipe, float nr_min_points) {
     Node* prev = NULL;
     Node* next_node;
 
-    // Parcurgem lista și eliminăm echipele cu punctajul minim
+    // Parcurgem lista si eliminam echipele cu punctajul minim
     while(current != NULL){
         if(current->val.teamPoints == nr_min_points){
             next_node = current->next;
